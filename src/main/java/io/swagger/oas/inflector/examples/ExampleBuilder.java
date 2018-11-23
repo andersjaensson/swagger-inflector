@@ -414,13 +414,10 @@ public class ExampleBuilder {
                         ObjectExample on;
                         if (output != null) {
                              on = (ObjectExample) output;
-                             on.put("additionalProperty", in);
+                             on.put("key", in);
                         }else {
                             on = new ObjectExample();
-                            StringExample value = new StringExample("key");
-                            value.setName("key");
-                            on.put("key", value);
-                            on.put("additionalProperty", in);
+                            on.put("key", in);
                             output = on;
                         }
                     } else {

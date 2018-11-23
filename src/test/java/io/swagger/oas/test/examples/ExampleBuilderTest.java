@@ -737,7 +737,9 @@ public class ExampleBuilderTest {
         String output = Json.pretty(example);
         assertEqualsIgnoreLineEnding(output, "{\n" +
                 "  \"foo\" : 0,\n" +
-                "  \"additionalProperty\" : \"string\"\n" +
+                "  \"additionalProp1\" : \"string\",\n" +
+                "  \"additionalProp2\" : \"string\",\n" +
+                "  \"additionalProp3\" : \"string\"\n" +
                 "}");
 
     }

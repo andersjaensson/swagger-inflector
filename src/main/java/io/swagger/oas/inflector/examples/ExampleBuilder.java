@@ -411,20 +411,17 @@ public class ExampleBuilder {
                         if (in.getName() == null) {
                             in.setName("value");
                         }
-                        ObjectExample on;
-                        if (output != null) {
-                             on = (ObjectExample) output;
-                             on.put("key", in);
-                        } else {
-                            on = new ObjectExample();
-                            for (int i = 1; i <= 3; i++) {
-                                String key = "additionalProp" + i;
-                                if (!on.keySet().contains(key)) {
-                                    on.put(key, in);
-                                }
-                            }
-                            output = on;
+                        if (output == null) {
+                            output = new ObjectExample();
                         }
+                        ObjectExample on = (ObjectExample) output;
+                        for (int i = 1; i <= 3; i++) {
+                            String key = "additionalProp" + i;
+                            if (!on.keySet().contains(key)) {
+                                on.put(key, in);
+                            }
+                        }
+
                     } else {
                         ObjectExample outputMap = new ObjectExample();
                         outputMap.put("key", new ObjectExample());

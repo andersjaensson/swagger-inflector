@@ -401,7 +401,7 @@ public class ExampleBuilder {
             }
 
         }
-        if (property.getAdditionalProperties() != null && property.getAdditionalProperties() instanceof Schema) {
+        if (property.getAdditionalProperties() instanceof Schema) {
             Schema inner = (Schema) property.getAdditionalProperties();
             if (inner != null) {
                 Object innerExample = fromProperty(null, inner, definitions, processedModels, requestType);
@@ -415,9 +415,14 @@ public class ExampleBuilder {
                         if (output != null) {
                              on = (ObjectExample) output;
                              on.put("key", in);
-                        }else {
+                        } else {
                             on = new ObjectExample();
-                            on.put("key", in);
+                            for (int i = 1; i <= 3; i++) {
+                                String key = "additionalProp" + i;
+                                if (!on.keySet().contains(key)) {
+                                    on.put(key, in);
+                                }
+                            }
                             output = on;
                         }
                     } else {

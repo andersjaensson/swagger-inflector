@@ -363,12 +363,8 @@ public class ExampleBuilder {
                     if (innerExample instanceof Example) {
                         StringExample key = new StringExample("key");
                         key.setName("key");
-                        on.put("key", key);
                         Example in = (Example) innerExample;
-                        if (in.getName() == null) {
-                            in.setName("value");
-                        }
-                        on.put("value", (Example) in);
+                        on.put("key", in);
                         output = on;
                     } else {
                         ObjectExample outputMap = new ObjectExample();
@@ -519,6 +515,12 @@ public class ExampleBuilder {
                     Example propExample = fromProperty(property, definitions, processedModels);
                     ex.put(key, propExample);
                 }
+            }
+
+            if (impl.getAdditionalProperties() != null) {
+                Property additionalProperties = impl.getAdditionalProperties();
+                Example propExample = fromProperty(additionalProperties, definitions, processedModels);
+                ex.put("key", propExample);
             }
             output = ex;
         }

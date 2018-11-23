@@ -520,7 +520,12 @@ public class ExampleBuilder {
             if (impl.getAdditionalProperties() != null) {
                 Property additionalProperties = impl.getAdditionalProperties();
                 Example propExample = fromProperty(additionalProperties, definitions, processedModels);
-                ex.put("key", propExample);
+                for (int i = 1; i <= 3; i++) {
+                    String key = "additionalProp" + i;
+                    if (!ex.keySet().contains(key)) {
+                        ex.put(key, propExample);
+                    }
+                }
             }
             output = ex;
         }
